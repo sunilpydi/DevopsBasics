@@ -7,8 +7,10 @@ trigger:
 - master
 
 pool:
-  #vmImage: null
   name: AWS-Azure
+  demands:
+  - maven
+  - Agent.Version -gtVersion 2.163.1
 
 steps:
 - task: Maven@3
