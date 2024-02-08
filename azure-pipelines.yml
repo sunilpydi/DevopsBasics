@@ -13,10 +13,6 @@ pool:
   - Agent.Version -gtVersion 2.163.1
 
 steps:
-- task: UseJavaVersion@0
-  inputs:
-    versionSpec: '8'
-    addToPath: true
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
