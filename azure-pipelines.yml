@@ -42,5 +42,12 @@ steps:
   inputs:
     sshEndpoint: 'AWS-tomcat'
     runOptions: 'inline'
-    inline: 'sudo cp $(Build.ArtifactStagingDirectory)/war/*.war /opt/tomcat/webapps/'
-    readyTimeout: '20000'
+    inline: |
+      scp -o StrictHostKeyChecking=no -r $(Build.ArtifactStagingDirectory)/drop/*.war root@3.80.132.91:/opt/tomcat/webapps/
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'AWS-tomcat'
+    runOptions: 'inline'
+    inline: |
+      ssh -o StrictHostKeyChecking=no root@3.80.132.91 "sudo service tomcat restart"
