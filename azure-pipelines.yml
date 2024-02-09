@@ -43,11 +43,11 @@ steps:
     sshEndpoint: 'AWS-tomcat'
     runOptions: 'inline'
     inline: |
-      scp -o StrictHostKeyChecking=no -r $(Build.ArtifactStagingDirectory)/drop/*.war root@3.80.132.91:/opt/tomcat/webapps/
+      scp -o StrictHostKeyChecking=no -r $(Build.ArtifactStagingDirectory)/drop/*.war myagentuser@3.80.132.91:/opt/tomcat/webapps/
 
 - task: SSH@0
   inputs:
     sshEndpoint: 'AWS-tomcat'
     runOptions: 'inline'
     inline: |
-      ssh -o StrictHostKeyChecking=no root@3.80.132.91 "sudo service tomcat restart"
+      ssh -o StrictHostKeyChecking=no myagentuser@3.80.132.91 "sudo service tomcat restart"
