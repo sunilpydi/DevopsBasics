@@ -37,4 +37,10 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
-    publishLocation: 'Container'
+    publishLocation: 'Container' 
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'AWS-tomcat'
+    runOptions: 'inline'
+    inline: 'sudo cp $(Build.ArtifactStagingDirectory)/war/*.war /opt/tomcat/webapps/'
+    readyTimeout: '20000'
